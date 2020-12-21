@@ -9,6 +9,4 @@ if (canvas) {
     canvas.addEventListener("mousmove", onMouseMove);
 } else {
 
-
-
 }
