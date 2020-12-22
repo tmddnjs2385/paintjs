@@ -6,6 +6,8 @@ const colors = document.getElementsByClassName("jsColor");
 
 const range = document.getElementById("jsRange");
 
+const saveBtn = document.getElementById("jsSave");
+
 
 
 canvas.width = 700;
@@ -70,8 +72,12 @@ if (canvas) {
     canvas.addEventListener("mousedown", startPainting);
     canvas.addEventListener("mouseup", stopPainting);
     canvas.addEventListener("mouseleave", stopPainting);
-    // canvas.addEventListener("touchmove", startPainting);
-    // canvas.addEventListener("touchend", stopPainting)
+    canvas.addEventListener("contextmenu", handleCM);
+    canvas.addEventListener("touchmove", startPainting);
+    canvas.addEventListener("touchend", stopPainting);
+
+
+
 
 }
 
@@ -119,6 +125,21 @@ function handleFillChange(event) {
 
 }
 
+function handleCM(event) {
+
+    event.preventDefault();
+
+}
+
+function handleSaveClick(event) {
+    const image = canvas.toDataURL();
+    const link = document.createElement("a");
+    link.href = image;
+    link.download = "PaintJS[?]";
+    link.click();
+
+}
+
 Array.from(colors).forEach(color =>
     color.addEventListener("click", handleFillChange)
 );
@@ -133,6 +154,10 @@ if (range) {
 
 if (mode) {
     mode.addEventListener("click", handleModeClick);
+}
+
+if (saveBtn) {
+    saveBtn.addEventListener("click", handleSaveClick)
 }
 
 
