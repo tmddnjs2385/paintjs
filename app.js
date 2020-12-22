@@ -6,6 +6,8 @@ const colors = document.getElementsByClassName("jsColor");
 
 const range = document.getElementById("jsRange");
 
+
+
 canvas.width = 700;
 
 canvas.height = 700;
@@ -76,6 +78,8 @@ if (canvas) {
 function handleColorClick(event) {
     const color = event.target.style.backgroundColor;
     ctx.strokeStyle = color;
+
+
 }
 
 function handleRangeChange(event) {
@@ -88,18 +92,37 @@ function handleRangeChange(event) {
 }
 
 function handleModeClick() {
-    if (filling == true) {
+    if (filling === true) {
+
         filling = false;
+
         mode.innerText = "Fill";
     } else {
+
         filling = true;
 
         mode.innerText = "Paint";
     }
 }
+
+
+function handleFillChange(event) {
+
+    if (filling) {
+        canvas.style.backgroundColor = event.target.style.backgroundColor;
+    } else {
+        const color = event.target.style.backgroundColor;
+        ctx.strokeStyle = color;
+    }
+
+
+
+}
+
 Array.from(colors).forEach(color =>
-    color.addEventListener("click", handleColorClick)
+    color.addEventListener("click", handleFillChange)
 );
+
 
 if (range) {
 
