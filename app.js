@@ -36,6 +36,8 @@ function startPainting() {
 
 function onMouseMove(event) {
 
+    event.preventDefault();
+
     const x = event.offsetX;
 
     const y = event.offsetY;
