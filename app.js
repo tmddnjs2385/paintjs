@@ -22,6 +22,9 @@ let painting = false;
 
 let filling = false;
 
+
+let touchPainting = false;//내가 추가한거
+
 const mode = document.getElementById("jsMode");
 
 function stopPainting() {
@@ -71,25 +74,68 @@ function onMouseUp(event) {
 
 function onTouchDown(event) {
 
+    touchPainting = true;
+
     event.preventDefault();
+
+    ctx.beginPath();
+
 
 }
 
 function onTouchUp(event) {
 
+    touchpainting = false;
+
     event.preventDefault();
+
+    // ctx.closePath();
 
 }
 
+
+
 function onTouchMove(event) {
+
+
 
     event.preventDefault();
 
     var touches = event.changedTouches;
 
-    ctx.lineTo(touches[0].screenX, touches[0].screenY);
+    const x = touches[0].clientX;
 
-    ctx.stroke();
+    const y = touches[0].clientY;
+
+    console.log(x, y);
+
+    if (!touchPainting) {
+
+
+
+
+    } else {
+
+        ctx.lineTo(x, y);
+
+        ctx.stroke();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 if (canvas) {
@@ -99,9 +145,9 @@ if (canvas) {
     canvas.addEventListener("mouseup", stopPainting);
     canvas.addEventListener("mouseleave", stopPainting);
     canvas.addEventListener("contextmenu", handleCM);
-    // canvas.addEventListener("touchstart", startPainting);
+    canvas.addEventListener("touchstart", onTouchDown);
     canvas.addEventListener("touchmove", onTouchMove);
-    // canvas.addEventListener("touchend", stopPainting);
+    canvas.addEventListener("touchend", onTouchUp);
 
 }
 
