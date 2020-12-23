@@ -8,6 +8,8 @@ const range = document.getElementById("jsRange");
 
 const saveBtn = document.getElementById("jsSave");
 
+const erase = document.getElementById("jsErase");
+
 
 
 canvas.width = 700;
@@ -103,13 +105,13 @@ function onTouchMove(event) {
 
     var touches = event.changedTouches;
 
-    console.log(touches);
+    // console.log(touches);
 
     const x = touches[0].clientX;
 
     const y = touches[0].clientY;
 
-    console.log(x, y);
+    // console.log(x, y);
 
     if (!touchPainting) {
 
@@ -190,8 +192,14 @@ function handleSaveClick(event) {
     const image = canvas.toDataURL();
     const link = document.createElement("a");
     link.href = image;
-    link.download = "PaintJS[?]";
+    link.download = "PaintJS";
     link.click();
+
+}
+
+function handleEraseClick(event) {
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
 
 }
 
@@ -211,7 +219,11 @@ if (mode) {
 }
 
 if (saveBtn) {
-    saveBtn.addEventListener("click", handleSaveClick)
+    saveBtn.addEventListener("click", handleSaveClick);
+}
+
+if (erase) {
+    erase.addEventListener("click", handleEraseClick);
 }
 
 
