@@ -68,6 +68,30 @@ function onMouseUp(event) {
 //     painting=false;
 // }
 
+
+function onTouchDown(event) {
+
+    event.preventDefault();
+
+}
+
+function onTouchUp(event) {
+
+    event.preventDefault();
+
+}
+
+function onTouchMove(event) {
+
+    event.preventDefault();
+
+    var touches = event.changedTouches;
+
+    ctx.lineTo(touches[0].screenX, touches[0].screenY);
+
+    ctx.stroke();
+}
+
 if (canvas) {
 
     canvas.addEventListener("mousemove", onMouseMove);
@@ -75,12 +99,9 @@ if (canvas) {
     canvas.addEventListener("mouseup", stopPainting);
     canvas.addEventListener("mouseleave", stopPainting);
     canvas.addEventListener("contextmenu", handleCM);
-    canvas.addEventListener("touchstart", startPainting);
-    canvas.addEventListener("touchmove", onMouseMove);
-    canvas.addEventListener("touchend", stopPainting);
-
-
-
+    // canvas.addEventListener("touchstart", startPainting);
+    canvas.addEventListener("touchmove", onTouchMove);
+    // canvas.addEventListener("touchend", stopPainting);
 
 }
 
@@ -124,9 +145,8 @@ function handleFillChange(event) {
         ctx.strokeStyle = color;
     }
 
-
-
 }
+
 
 function handleCM(event) {
 
@@ -147,11 +167,10 @@ Array.from(colors).forEach(color =>
     color.addEventListener("click", handleFillChange)
 );
 
+// Array.from(colors).forEach(color=>color.addEventListener("click", filling? handleFillChange: handleColorClick));
 
 if (range) {
-
     range.addEventListener("input", handleRangeChange);
-
 }
 
 
