@@ -105,7 +105,7 @@ function onTouchMove(event) {
 
     console.log(touches);
 
-    const x = touches[0].clientX + 20;//-15
+    const x = touches[0].clientX + 50;//-15
 
     const y = touches[0].clientY;//+60
 
