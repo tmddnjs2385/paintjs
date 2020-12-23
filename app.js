@@ -103,15 +103,15 @@ function onTouchMove(event) {
 
     var touches = event.changedTouches;
 
-    const x = touches[0].clientX - 15;
+    console.log(touches);
 
-    const y = touches[0].clientY - 60;
+    const x = touches[0].clientX;//-15
+
+    const y = touches[0].clientY;//+60
 
     console.log(x, y);
 
     if (!touchPainting) {
-
-
 
 
     } else {
@@ -121,16 +121,6 @@ function onTouchMove(event) {
         ctx.stroke();
 
     }
-
-
-
-
-
-
-
-
-
-
 
 }
 
